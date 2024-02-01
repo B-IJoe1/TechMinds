@@ -4,11 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-
+require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+//Middleware
+app.use((req, res, next) => {
+  console.log(req.path,req.method)
+  next()
+})
+
+//Set up listener
+app.listen(process.env.REACT_APP_PORT, () =>{
+  console.log('listening on port 3000')
+})
+
 
 app.use(logger('dev'));
 app.use(cors());
@@ -17,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/api/index', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
