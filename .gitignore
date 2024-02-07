@@ -2,6 +2,7 @@
 config.env
 .env 
 
+#Add env to the gitignore file 
 
 # dependencies
 */node_modules
