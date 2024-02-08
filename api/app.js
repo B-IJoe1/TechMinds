@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var mongoose = require('mongoose');
 require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,10 +17,7 @@ app.use((req, res, next) => {
   next()
 })
 
-//Set up listener
-app.listen(process.env.REACT_APP_PORT, () =>{
-  console.log('listening on port 3000')
-})
+
 
 
 app.use(logger('dev'));
@@ -29,8 +27,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//routes
 app.use('/api/index', indexRouter);
 app.use('/users', usersRouter);
+
+//connect to mongodb
+mongoose.connect(process.env.REACT_APP_MONGOURI)
+  .then(() => {
+    //Set up listener
+  app.listen(process.env.REACT_APP_PORT, () =>{
+    console.log('connected to MongoDB & listening on port 3000')
+})
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

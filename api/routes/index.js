@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Exam = require('../models/examModel');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,8 +13,15 @@ router.get('/:id', function(req, res, next) {
 })
 
 /* POST new item. */
-router.post('/', function(req, res, next) {
-  res.json({mssg:'POST API is working properly!'})
+router.post('/', async (req, res, next) => {
+  var{PatientID, ExamID, Image, KeyFindings, BrixiaScore, Age, Sex, BMI, ZipCode} = req.body
+
+  try{
+    var exam = await Exam.create({PatientID, ExamID, Image, KeyFindings, BrixiaScore, Age, Sex, BMI, ZipCode})
+    res.status(200).json(exam)
+  } catch(error) {
+    res.status(400).json({error: error.message})
+  }
 })
 
 /* Delete an item. */
