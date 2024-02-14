@@ -1,4 +1,6 @@
 import React from "react";
+import "./Admin.css";
+import TableExam from "../../components/TableExam/TableExam";
 
 const Admin = () => {
     return (<div>
@@ -25,6 +27,8 @@ const Admin = () => {
             <button>Search</button>
 
         </div>
+
+        <TableExam/>
 
     </div>);
 }
