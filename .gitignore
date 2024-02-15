@@ -1,4 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+config.env
+.env
+
+#Add env to the gitignore file
 
 # dependencies
 */node_modules
@@ -920,3 +924,4 @@ node_modules/whatwg-url/lib/URLSearchParams-impl.js
 node_modules/whatwg-url/lib/URLSearchParams.js
 node_modules/whatwg-url/lib/utils.js
 node_modules/whatwg-url/lib/VoidFunction.js
+/.idea/*
