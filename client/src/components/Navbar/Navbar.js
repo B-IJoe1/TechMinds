@@ -16,7 +16,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/">
+            <Link to="/admin">
               <h1>Admin</h1>
             </Link>
           </li>
