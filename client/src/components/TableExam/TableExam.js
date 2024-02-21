@@ -1,40 +1,53 @@
-import React from "react";
+import * as React from "react";
 import {test_data} from "../../TestData/TestData";
-import {Body, Cell, Header, HeaderCell, HeaderRow, Row, Table} from '@table-library/react-table-library'
+import {useTheme} from "@table-library/react-table-library/theme";
 
-const examData = test_data;
+import {useSort, HeaderCellSort} from "@table-library/react-table-library/sort";
+import {CompactTable} from "@table-library/react-table-library/compact";
+
+import {useRowSelect, HeaderCellSelect, CellSelect, SelectClickTypes, SelectTypes} from "@table-library/react-table-library/select";
+
+// const examData = test_data;
+// const key = "COVID Exam Data";
+
 
 const TableExam = () => {
+    const data = { nodes: test_data}
+    const theme = useTheme({
+        HeaderRow: `
+        background-color: #eaf5fd;
+      `,
+        Row: `
+        
+        &:hover .td {
+        border-top: 1px solid orange;
+        border-bottom: 1px solid orange;            
+        }
+        
+        &:nth-of-type(odd) {
+          background-color: #d2e9fb;
+        }
 
-    const data = { nodes: examData}
-    return (<Table data={data}>
-            {(tableList) => <>
-                <Header>
-                    <HeaderRow>
-                        <HeaderCell>Exam ID</HeaderCell>
-                        <HeaderCell>Patient ID</HeaderCell>
-                        <HeaderCell>Age</HeaderCell>
-                        <HeaderCell>Sex</HeaderCell>
-                        <HeaderCell>BMI</HeaderCell>
-                        <HeaderCell>Zip Code</HeaderCell>
-                        <HeaderCell>Image</HeaderCell>
-                    </HeaderRow>
-                </Header>
+        &:nth-of-type(even) {
+          background-color: #eaf5fd;
+        }
+      `,
+    });
 
-               { <Body>
-                    {tableList.map((examData) => (<Row key={examData.id} item={examData}>
-                            <Cell>{examData.id}</Cell>
-                            <Cell>{examData.patientId}</Cell>
-                            <Cell>{examData.age}</Cell>
-                            <Cell>{examData.sex}</Cell>
-                            <Cell>{examData.bmi}</Cell>
-                            <Cell>{examData.zipCode}</Cell>
-                        </Row>))}
-                </Body>}
-            </>}
-        </Table>
+    const select = useRowSelect( data, {}, {});
 
-    )
+
+    const COLUMNS = [
+        {label: 'Exam ID', renderCell: (item) => item.examId},
+        {label: 'Patient ID', renderCell: (item) => item.patientId},
+        {label: 'Age', renderCell: (item) => item.age},
+        {label: 'Sex', renderCell: (item) => item.sex},
+        {label: 'BMI', renderCell: (item) => item.bmi},
+        {label: 'Zip Code', renderCell: (item) => item.zipCode},
+        {label: 'Image', renderCell: (item) => <img src={item.imageURL} width={100} height={60} alt="lung xray" />}
+    ];
+
+    return <CompactTable columns={COLUMNS} data={data} theme={theme} /*select={select}*/  />
 }
 
 export default TableExam;
