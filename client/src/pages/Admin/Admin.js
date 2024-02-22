@@ -11,8 +11,6 @@ const Admin = () => {
         <div className="buttons">
             <button>Add New Exam</button>
             <br/>
-            <button>Update Exam</button>
-            <button>Delete Exam</button>
             <br/><br/>
             <label>Find Exam by:  &nbsp;
                 <select>

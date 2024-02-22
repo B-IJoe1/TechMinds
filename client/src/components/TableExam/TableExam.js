@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { test_data } from "../../TestData/TestData";
 import { useTheme } from "@table-library/react-table-library/theme";
 
@@ -7,8 +8,7 @@ import { CompactTable } from "@table-library/react-table-library/compact";
 
 import { useRowSelect, HeaderCellSelect, CellSelect, SelectClickTypes, SelectTypes } from "@table-library/react-table-library/select";
 
-// const examData = test_data;
-// const key = "COVID Exam Data";
+
 
 
 const TableExam = () => {
@@ -19,6 +19,7 @@ const TableExam = () => {
       `,
     Row: `
         
+
         &:hover .td {
         border-top: 1px solid orange;
         border-bottom: 1px solid orange;            
@@ -30,6 +31,7 @@ const TableExam = () => {
 
         &:nth-of-type(even) {
           background-color: #eaf5fd;
+
         }
       `,
   });
@@ -47,6 +49,7 @@ const TableExam = () => {
     { label: 'Image', renderCell: (item) => <img src={item.imageURL} width={100} height={60} alt="lung xray" /> },
     { label: 'Patient Details', renderCell: (item) => <a href={`/Details/${item.patientId}`}>View Patient</a> }
   ];
+
 
   return <CompactTable columns={COLUMNS} data={data} theme={theme} /*select={select}*/ />
 }
