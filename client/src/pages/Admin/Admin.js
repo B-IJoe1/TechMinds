@@ -2,9 +2,15 @@ import React from "react";
 import "./Admin.css";
 import TableExam from "../../components/TableExam/TableExam";
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
+import NewExam from "../NewExam/NewExam";
 
 const Admin = () => {
-  return (
+    function handleSubmit() {
+        return <Link to="/newExam" />;
+    }
+
+    return (
     <div>
       <h1>Admin</h1>
       <p>
@@ -13,7 +19,7 @@ const Admin = () => {
       </p>
 
       <div className="buttons">
-        <button>Add New Exam</button>
+        <button onClick={ handleSubmit } >Add New Exam</button>
         <br />
         <br />
         <br />

@@ -1,32 +1,20 @@
 import * as React from "react";
+import {useCallback, useEffect, useState} from "react";
 
-import { test_data } from "../../TestData/TestData";
-import { useTheme } from "@table-library/react-table-library/theme";
+import {useTheme} from "@table-library/react-table-library/theme";
+import {CompactTable} from "@table-library/react-table-library/compact";
 
-import {
-  useSort,
-  HeaderCellSort,
-} from "@table-library/react-table-library/sort";
-import { CompactTable } from "@table-library/react-table-library/compact";
-
-import {
-  useRowSelect,
-  HeaderCellSelect,
-  CellSelect,
-  SelectClickTypes,
-  SelectTypes,
-} from "@table-library/react-table-library/select";
-
-import { useEffect, useState } from "react";
+import {useRowSelect} from "@table-library/react-table-library/select";
 
 const TableExam = () => {
   const [exams, setExams] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(
+      async () => {
     const response = await fetch("http://localhost:4000/api/index");
-    const json = await response.json();
-    return json;
-  };
+        return await response.json();
+  }, []);
+
   useEffect(() => {
     fetchData().then((apiData) => {
       setExams(apiData);
