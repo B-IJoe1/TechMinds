@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ExamContextProvider } from "./components/context/ExamContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  
+    <ExamContextProvider>
     <App />
+    </ExamContextProvider>
   </React.StrictMode>
 );
 

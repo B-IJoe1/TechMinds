@@ -7,7 +7,7 @@ import NewExam from "../NewExam/NewExam";
 
 const Admin = () => {
     function handleSubmit() {
-        return <Link to="/newExam" />;
+      window.location.href = "/newExam";
     }
 
     return (
@@ -19,11 +19,8 @@ const Admin = () => {
       </p>
 
       <div className="buttons">
-        <button onClick={ handleSubmit } >Add New Exam</button>
         <br />
-        <br />
-        <br />
-        <label>
+        {/*<label>
           Find Exam by: &nbsp;
           <select>
             <option>Patient ID</option>
@@ -34,7 +31,10 @@ const Admin = () => {
           </select>
         </label>
         <input />
-        <button>Search</button>
+        <button>Search</button>*/}
+        <button onClick={() => handleSubmit()}>Add New Exam</button>
+        <br/>
+        <br/>
       </div>
 
       <TableExam />
