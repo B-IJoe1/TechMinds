@@ -1,0 +1,36 @@
+name: Node.JS CI CD
+
+on:
+  push: 
+    branches: [main]
+
+  jobs: 
+    tests:
+
+
+      name: Test
+      runs-in: ubuntu-latest
+
+      strategy:
+        matrix:
+          node-version: [16.x]
+
+        steps: 
+         - name: Checkout 
+          uses: actions/checkout@v2
+          with:
+             fetch-depth: 0 
+
+        - name: Use Node.JS ${{ matrix.node-version }}
+          uses: actions/setup-node@v2
+          with: 
+             node-version: ${{ matrix.node-version }}
+
+        - nme: NPM install, build and test 
+          run: |
+            npm install
+            npm test
+          env:
+            REACT_APP_PORT: ${{ secrets.DBHOST }}
+            DBHOST: ${{ secrets.DBHOST }}
+            
