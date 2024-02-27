@@ -31,6 +31,6 @@ on:
             npm install
             npm test
           env:
-            REACT_APP_PORT: ${{ secrets.DBHOST }}
+            REACT_APP_PORT: ${{ secrets.REACT_APP_PORT }}
             DBHOST: ${{ secrets.DBHOST }}
             
