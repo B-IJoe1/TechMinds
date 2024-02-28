@@ -18,10 +18,10 @@ var getExam = async(req, res) =>{
   }
 
   try {
-    var exam = await Exam.find({patientId}).sort({createdAt: -1});
+    var exam = await Exam.findOne({patientId}).sort({createdAt: -1});
 
     if (!exam) {
-      return res.status(404).json({ error: 'No exam found for the given patient ID' });
+      return res.status(404).json({ error: 'No exam found for the given patient ID', patientId: req.params.patientId});
     }
 
   } catch (error) {
@@ -33,16 +33,15 @@ var getExam = async(req, res) =>{
 
 //Post or create a new exam
 var createExam = async (req, res) => {
-  var{PatientID, ExamID, Image, KeyFindings, BrixiaScore, Age, Sex, BMI, ZipCode} = req.body
+  var {patientId, examId, imageURL, keyFindings, brixiaScore, age, sex, bmi, zipCode} = req.body;
 
-  //add new exam to database
-  try{
-    var exam = await Exam.create({PatientID, ExamID, Image, KeyFindings, BrixiaScore, Age, Sex, BMI, ZipCode})
-    res.status(200).json(exam)
-  } catch(error) {
-    res.status(400).json({error: error.message})
+  try {
+    var exam = await Exam.create({patientId, examId, imageURL, keyFindings, brixiaScore, age, sex, bmi, zipCode});
+    res.status(200).json(exam); // sending the exam object in the response
+  } catch (error) {
+    res.status(400).json({error: error.message});
   }
-}
+};
 
 //Delete an exam
 var deleteExam = async (req, res) => {
@@ -61,13 +60,35 @@ var deleteExam = async (req, res) => {
 }
 
 //Update an exam
-var updateExam = async (req, res) => {
-    var {id} = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
+var updateExam = async(req, res) =>{
+  var {patientId} = req.params
+
+  if (!patientId) {
+    return res.status(400).json({ error: 'Patient ID is required' });
+  }
+
+  try {
+    var exam = await Exam.findOneAndUpdate({patientId},{
+      ...req.body})
+    if (!exam) {
+      return res.status(404).json({ error: 'No exam found for the given patient ID' });
+    }
+
+  } catch (error) {
+    console.error('Error in fetching exam:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+  res.status(200).json(exam)
+}
+/*
+var updateExam = async (req, res) => {
+    var {patientId} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(patientId)){
         return res.status(404).json({error: 'No exam found'})
       }
-    var exam = await Exam.findOneAndUpdate({_id: id},{
+    var exam = await Exam.findOneAndUpdate({patientId},{
         ...req.body
     })
 
@@ -76,7 +97,7 @@ var updateExam = async (req, res) => {
     }
     res.status(200).json(exam)
 }
-
+*/
 module.exports = {
   createExam,
   getAllExams,

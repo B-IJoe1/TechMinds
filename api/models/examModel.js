@@ -2,38 +2,38 @@ var mongoose = require('mongoose')
 var schema = mongoose.Schema
 
 var examSchema = new schema({
-    PatientID: {
+    patientId: {
         type: String,
         required: true
     },
-    ExamID: {
+    examId: {
         type: String,
         required: true
     },
-    Image:{
+    imageURL:{
         type: String,
     },
-    KeyFindings: {
+    keyFindings: {
         type: String,
         required: true
     },
-    BrixiaScore: {
+    brixiaScore: {
         type: Number,
 
     },
-    Age: {
+    age: {
         type: Number,
         required: true
     },
-    Sex: {
+    sex: {
         type: String,
         required: true
     },
-    BMI: {
+    bmi: {
         type: Number,
         required: true
     },
-    ZipCode: {
+    zipCode: {
         type: Number,
         required: true
     }
