@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 // import { useApi } from './hooks/use-api';
 import Admin from "./pages/Admin/Admin";
 import Details from "./pages/Details/Details";
-import SingleExam from "./components/SingleExam/SingleExam"
+import NewExam from "./pages/NewExam/NewExam";
 
 // comment to change
 import './App.css';
@@ -25,6 +25,7 @@ function App() {
             <Route path="/" element={<Main />}></Route>
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/Details/:patientId" element={<PatientTable />}></Route>
+            <Route path="/newExam" element={<NewExam />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

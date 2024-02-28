@@ -1,42 +1,44 @@
-import React, {useEffect, useState} from "react";
-import { test_data } from "../../TestData/TestData";
-import Exam from "../../components/Exam/Exam";
+import React, {useEffect} from "react";
+import TableExam from "../../components/TableExam/TableExam";
+import {useExamContext} from "../../hooks/useExamContext";
 
 const Main = () => {
-
-    const [exams, setExams] = useState(null);
+    /*const [exams, setExams] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/api/index');
+      const fetchData = async () => {
+        const response = await fetch("http://localhost:4000/api/index");
+        const json = await response.json();
+
+        if (response.ok) {
+          console.log(json);
+          setExams(json);
+        }
+      };
+      fetchData();
+    }, []);*/
+
+    /*const {exams, dispatch} = useExamContext();
+
+    useEffect(() => {
+        const fetchExams = async () => {
+            const response = await fetch("http://localhost:4000/api/index");
             const json = await response.json();
 
             if (response.ok) {
-                console.log(json);
-                setExams(json);
+                dispatch({type: 'SET_EXAMS', payload: json})
             }
-
         }
-        fetchData();
-    }, []);
 
+        fetchExams();
+    }, [])*/
 
-
-  return (
-    <div>
-      <div>
-
-        {exams && exams.map((exam) => (
-              <p key={exam._id}>{exam.examId}</p>
-              // <Exam key={exam._id} exam={exam} />
-          ))}
-
-
-        {/*{test_data &&
-          test_data.map((exam) => <Exam key={exam._id} exam={exam} />)}*/}
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Main Page</h2>
+            <TableExam/>
+        </div>
+    );
 };
 
 export default Main;
