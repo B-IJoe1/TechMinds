@@ -92,6 +92,13 @@ const TableExam = () => {
                 <button type="button" onClick={() => handleDelete(item._id)}>Delete</button>
             ),
         },
+        {
+            label: "Update",
+            renderCell: (item) => (
+                <button type="button" onClick={() => window.location.href = `/updateExam/${item._id}`}>Update</button>
+            ),
+        },
+
     ];
 
     return (
