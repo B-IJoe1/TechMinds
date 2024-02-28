@@ -81,23 +81,7 @@ var updateExam = async(req, res) =>{
   }
   res.status(200).json(exam)
 }
-/*
-var updateExam = async (req, res) => {
-    var {patientId} = req.params
-
-    if(!mongoose.Types.ObjectId.isValid(patientId)){
-        return res.status(404).json({error: 'No exam found'})
-      }
-    var exam = await Exam.findOneAndUpdate({patientId},{
-        ...req.body
-    })
-
-    if (!Exam) {
-        return res.status(400).json({error: 'No exam found'})
-    }
-    res.status(200).json(exam)
-}
-*/
+//I LOVE YOU ALL
 module.exports = {
   createExam,
   getAllExams,
