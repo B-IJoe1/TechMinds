@@ -22,6 +22,6 @@ router.post('/admin', createExam)
 router.delete('/:id', deleteExam)
 
 /* UPDATE new exam. */
-router.patch('/:id', updateExam)
+router.patch('/:patientId', updateExam)
 
 module.exports = router;

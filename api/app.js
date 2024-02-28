@@ -36,7 +36,7 @@ mongoose.connect(process.env.REACT_APP_MONGOURI)
   .then(() => {
     //Set up listener
   app.listen(process.env.REACT_APP_PORT, () =>{
-    console.log('connected to MongoDB & listening on port 3000')
+    console.log('connected to MongoDB & listening on port 4000')
 })
   })
   .catch((error) => {
