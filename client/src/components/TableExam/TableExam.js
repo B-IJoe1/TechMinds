@@ -95,7 +95,7 @@ const TableExam = () => {
         {
             label: "Update",
             renderCell: (item) => (
-                <button type="button" onClick={() => window.location.href = `/updateExam/${item._id}`}>Update</button>
+                <button type="button" onClick={() => window.location.href = `/updateExam/${item.patientId}`}>Update</button>
             ),
         },
 

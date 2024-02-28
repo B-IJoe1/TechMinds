@@ -11,6 +11,7 @@ import './App.css';
 
 import { useApi } from './hooks/use-api';
 import PatientTable from "./components/PatientTable/PatientTable";
+import ExamUpdate from "./pages/UpdateExam/ExamUpdate";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/Details/:patientId" element={<PatientTable />}></Route>
             <Route path="/newExam" element={<NewExam />}></Route>
+            <Route path="/updateExam/:patientId" element={<ExamUpdate />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
