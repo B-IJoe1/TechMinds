@@ -1,9 +1,10 @@
 import React, {useState} from "react";
+import { useParams } from "react-router-dom";
 
 const ExamUpdate = () => {
 
     const [examId, setExamId] = useState("");
-    const [patientId, setPatientId] = useState("");
+    //const [patientId, setPatientId] = useState("");
     const [age, setAge] = useState(0);
     const [bmi, setBmi] = useState(0);
     const [imageURL, setImageURL] = useState("");
@@ -12,10 +13,11 @@ const ExamUpdate = () => {
     const [zipCode, setZipCode] = useState(0);
     const [sex, setSex] = useState("");
     const [error, setError] = useState(null);
+    const { patientId } = useParams();
 
     function handleReset() {
         setExamId("");
-        setPatientId("");
+        //setPatientId("");
         setAge(0);
         setBmi(0);
         setImageURL("");
@@ -33,8 +35,8 @@ const ExamUpdate = () => {
 
         };
 
-
-        const response = await fetch("http://localhost:4000/api/index/:patientId", {
+        //fixed this call to api
+        const response = await fetch(`http://localhost:4000/api/index/${patientId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -63,7 +65,7 @@ const ExamUpdate = () => {
             <input type="text" value={examId} onChange={(e) => setExamId(e.target.value)} />
             <br/>
             <label>Patient ID:</label>
-            <input type="text" value={patientId} onChange={(e) => setPatientId(e.target.value)} />
+            {/*<input type="text" value={patientId} onChange={(e) => setPatientId(e.target.value)} />*/}
             <br/>
             <label>Age:</label>
             <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
