@@ -40,7 +40,7 @@ describe('Regression Tests: Exam API', () => {
     it('should get specific exam from patientId', (done) => {
       chai
         .request(app)
-        .get('/:patientId ')
+        .get('/patientId')
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('array');
@@ -51,18 +51,19 @@ describe('Regression Tests: Exam API', () => {
     
     it('should create a new exam', (done) => {
       const examdata = {
-        patientID: '12345',
+        patientId: '12345',
+        examId: 'ABCDE12345',
+        imageURL: 'https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/COVID-19-AR-16434350_XR_CHEST_AP_PORTABLE_1.png',
+        keyFindings: 'No significant findings',
+        brixiaScore: 1,
         age: 35,
         sex: 'M',
-        zipCode: '12345',
         bmi: 22.5,
-        examId: 'ABCDE12345',
-        KeyFindings: 'No significant findings',
-        brixiaScores: "1,2,3",
-        imageURL: 'https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/COVID-19-AR-16434350_XR_CHEST_AP_PORTABLE_1.png',
+        zipCode: 12345,
+
       };
       chai.request(app)
-        .post('/admin')
+        .post('/api/index/admin')
         .send(examdata)
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -70,10 +71,11 @@ describe('Regression Tests: Exam API', () => {
           done();
         });
     });
+
     it('should delete a specific exam', (done) => {
         chai
           .request(app)
-          .delete('/:id ')
+          .delete(`/api/index/${examId}`)
           .end((err, res) => {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
@@ -88,17 +90,17 @@ describe('Regression Tests: Exam API', () => {
     
         // Specify the updated exam data
         const updatedExamData = {
-          patientID: '12345',
+          patientId: '12345',
           age: 40,
           sex: 'F',
           zipCode: '54321',
           bmi: 25.5,
           KeyFindings: 'Updated findings',
-          brixiaScores: "4,5,6",
+          brixiaScore: "4,5,6",
           imageURL: 'https://example.com/updated-image.jpg',
         };
         chai.request(app)
-        .patch(`/admin/${existingExamId}`)
+        .patch(`/api/index/admin/${existingExamId}`)
         .send(updatedExamData)
         .end((err, res) => {
         expect(res).to.have.status(200); // Assuming successful update returns status 200
