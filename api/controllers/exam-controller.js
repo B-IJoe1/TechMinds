@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //Get all exams
 var getAllExams = async(req, res) =>{
 
-  var exams = await Exam.find({}).sort({createdAt: -1}) 
+  var exams = await Exam.find({}).sort({createdAt: -1})
 
   res.status(200).json(exams)
 }
@@ -50,7 +50,7 @@ var deleteExam = async (req, res) => {
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No exam found'})
       }
-    
+
     var exam = await Exam.findOneAndDelete({_id: id})
 
     if (!Exam) {
@@ -71,6 +71,8 @@ var updateExam = async(req, res) =>{
   try {
     var exam = await Exam.findOneAndUpdate({patientId},{
       ...req.body})
+
+    console.log(exam)
     if (!exam) {
       return res.status(404).json({ error: 'No exam found for the given patient ID' });
     }

@@ -29,15 +29,8 @@ const ExamUpdate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const exam = {
-            examId,
-            patientId,
-            age,
-            bmi,
-            imageURL,
-            keyFindings,
-            brixiaScore,
-            zipCode,
-            sex
+            examId, patientId, age, bmi, imageURL, keyFindings, brixiaScore, zipCode, sex
+
         };
 
 
@@ -67,33 +60,34 @@ const ExamUpdate = () => {
         <form className="update" onSubmit={handleSubmit} onReset={handleReset}>
             <h2>Update Exam</h2>
             <label>Exam ID:</label>
-            <input type="text" required value={examId} onChange={(e) => setExamId(e.target.value)} />
+            <input type="text" value={examId} onChange={(e) => setExamId(e.target.value)} />
             <br/>
             <label>Patient ID:</label>
-            <input type="text" required value={patientId} onChange={(e) => setPatientId(e.target.value)} />
+            <input type="text" value={patientId} onChange={(e) => setPatientId(e.target.value)} />
             <br/>
             <label>Age:</label>
-            <input type="number" required value={age} onChange={(e) => setAge(e.target.value)} />
+            <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
             <br/>
             <label>Sex:</label>
-            <input type="text" required value={sex} onChange={(e) => setSex(e.target.value)} />
+            <input type="text" value={sex} onChange={(e) => setSex(e.target.value)} />
             <br/>
             <label>BMI:</label>
-            <input type="number" required value={bmi} onChange={(e) => setBmi(e.target.value)} />
+            <input type="number" value={bmi} onChange={(e) => setBmi(e.target.value)} />
             <br/>
             <label>Zip Code:</label>
-            <input type="number" required value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+            <input type="number" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
             <br/>
             <label>Image URL:</label>
-            <input type="text" required value={imageURL} onChange={(e) => setImageURL(e.target.value)} />
+            <input type="text" value={imageURL} onChange={(e) => setImageURL(e.target.value)} />
             <br/>
             <label>Key Findings:</label>
-            <input type="text" required value={keyFindings} onChange={(e) => setKeyFindings(e.target.value)} />
+            <input type="text" value={keyFindings} onChange={(e) => setKeyFindings(e.target.value)} />
             <br/>
             <label>Brixia Score:</label>
-            <input type="number" required value={brixiaScore} onChange={(e) => setBrixiaScore(e.target.value)} />
+            <input type="number" value={brixiaScore} onChange={(e) => setBrixiaScore(e.target.value)} />
             <br/>
-            <button type="submit">Add Exam</button>
+            <span className="material-symbols-outlined">
+            <button type="submit">Update Exam</button></span>
             {error && <div className="error">{error}</div>}
             <button type="reset">Reset</button>
             <br/>

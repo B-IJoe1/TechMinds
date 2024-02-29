@@ -54,6 +54,10 @@ const TableExam = () => {
     // const select = useRowSelect(data, {}, {});
 
     function handleDelete(_id) {
+
+        if (!window.confirm("Are you sure you want to delete this exam?")) return;
+
+
         fetch(`http://localhost:4000/api/index/${_id}`, {
             method: "DELETE",
         }).then((response) => {
@@ -65,6 +69,7 @@ const TableExam = () => {
                 });
             }
         });
+        alert("Exam deleted successfully!")
     }
 
     const COLUMNS = [
@@ -89,13 +94,13 @@ const TableExam = () => {
         {
             label: "Delete",
             renderCell: (item) => (
-                <button type="button" onClick={() => handleDelete(item._id)}>Delete</button>
+                <span className="material-symbols-rounded" onClick={() => handleDelete(item._id)}>Delete</span>
             ),
         },
         {
             label: "Update",
             renderCell: (item) => (
-                <button type="button" onClick={() => window.location.href = `/updateExam/${item.patientId}`}>Update</button>
+                <span className="material-symbols-rounded" onClick={() => window.location.href = `/updateExam/${item.patientId}`}>Update</span>
             ),
         },
 
