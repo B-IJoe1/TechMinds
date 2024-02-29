@@ -1,7 +1,6 @@
-//
 // This file is used to configure the test environment for continuous integration.
 // Instead of using the actual database, we use an in-memory database.
-// We still must make sure that the environmental variable ACCESS_TOKEN_SECRET is set. 
+// We still must make sure that the environmental variable REACT_APP_MONGOURI is set. 
 // This is done by (1) using the dotenv package and the .env file OR (2) setting the environmental 
 // variable in the CI/CD pipeline.
 
@@ -18,10 +17,7 @@ module.exports.connect = async () => {
 
   // Check if a Mongoose connection is already active, and only create a new connection if not
   if (!mongoose.connection.readyState) {
-    await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri);
   }
 };
 
