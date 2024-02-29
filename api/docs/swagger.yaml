@@ -1,0 +1,243 @@
+# See https://github.com/sspangsberg/mongo_mongoose_nodejs_api/blob/main/swagger.yaml for 
+# a more complete example of a Swagger file.
+# Be very careful with indentation in this file. It is very sensitive to indentation errors.
+# You may want to try an online YAML validator if you get errors when running swagger-ui-express.
+# See https://www.youtube.com/watch?v=O0R-L8PbP-4 for a video on this topic.
+# See https://swagger.io/docs/specification/2-0/basic-structure/ for a description of the Swagger file structure.
+
+openapi: 3.0.0
+info:
+  title: Doctor's Notes
+  description: MongoDB ExpressJS NodeJS REST API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000/api/docs
+    description: Localhost development server 
+components:
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: auth-token
+
+  schemas:
+    Exam:
+      type: object
+      properties:
+        patientId:
+          type: string
+          description: The ID of the patient associated with the exam.
+        examId:
+          type: string
+          description: The ID of the exam.
+        imageURL:
+          type: string
+          description: The URL of the image associated with the exam.
+        keyFindings:
+          type: string
+          description: Key findings from the exam.
+        brixiaScore:
+          type: number
+          description: The Brixia score of the exam.
+        age:
+          type: integer
+          description: The age of the patient at the time of the exam.
+        sex:
+          type: string
+          description: The gender of the patient (e.g., "male", "female").
+        bmi:
+          type: number
+          description: The body mass index (BMI) of the patient at the time of the exam.
+        zipCode:
+          type: integer
+          description: The zip code of the patient's location.
+       
+        
+
+paths:
+#
+# Get Exam
+#
+  /:
+    get:
+      summary: Retrieves all Exams.
+      tags:
+        - All Exams
+      description: Retrieves a list of Exams as JSON objects.
+      responses:
+        200:
+          description: A list of Exam JSON objects in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Exam"
+
+  /{patientId}:
+    get:
+      summary: Get specific exams based on patient id .
+      description: Retrieves a specific exam by patientId.
+      tags:
+        - Patient Exams 
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      responses:
+        200:
+          description: The User in the format of a JSON object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Exam"
+
+  
+#
+# Post Exam
+#
+  /admin:
+    post:
+      summary: Create an exam.
+      tags:
+        - Post
+      description: Creates a post.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patientId:
+                  type: string
+                examId:
+                  type: string
+                imageURL:
+                  type: string
+                keyFindings:
+                  type: string
+                brixiaScore:
+                  type: number
+                age:
+                  type: number
+                sex:
+                  type: string
+                bmi:
+                  type: number
+                zipCode:
+                  type: number
+            responses:
+              200:
+                description: Returned on success.
+
+
+#
+# Delete Exam
+#
+
+/{id}:
+    delete:
+      summary: Deletes the Exam using MongoDB ID.
+      tags:
+        - Delete Exam
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      description: Deletes the Exam with the given MongoDB id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patientId:
+                  type: string
+                examId:
+                  type: string
+                imageURL:
+                  type: string
+                keyFindings:
+                  type: string
+                brixiaScore:
+                  type: number
+                age:
+                  type: number
+                sex:
+                  type: string
+                bmi:
+                  type: number
+                zipCode:
+                  type: number
+      responses:
+        200:
+          description: Returns a message about the success of the operation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+
+
+#
+# Update Exam
+#
+
+/{examId}:
+  patch: 
+    summary: Partially updates the Exam using Exam ID.
+    tags:
+      - Update Exam
+    parameters:
+      - in: path
+        name: examId
+        required: true
+        description: Exam Id created by the hospital
+        schema:
+          type: string
+    description: Partially updates the Exam with the given Exam ID.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+                imageURL:
+                  type: string
+                keyFindings:
+                  type: string
+                brixiaScore:
+                  type: number
+                age:
+                  type: number
+                sex:
+                  type: string
+                bmi:
+                  type: number
+                zipCode:
+                  type: number
+            # Indicating that all properties are optional
+            additionalProperties: true
+    responses:
+      200:
+        description: Returns a message about the success of the operation.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                msg:
+                  type: string
