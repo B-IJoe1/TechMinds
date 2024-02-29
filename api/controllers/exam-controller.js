@@ -59,7 +59,7 @@ var deleteExam = async (req, res) => {
     res.status(200).json(exam)
 }
 
-//Update an exam
+//Update an exam api
 
 var updateExam = async(req, res) =>{
   var {patientId} = req.params
