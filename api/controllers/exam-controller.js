@@ -60,7 +60,7 @@ var deleteExam = async (req, res) => {
 }
 
 //Update an exam
-
+//test
 var updateExam = async(req, res) =>{
   var {patientId} = req.params
 
