@@ -7,11 +7,6 @@ import { CompactTable } from "@table-library/react-table-library/compact";
 import { useRowSelect, HeaderCellSelect, CellSelect, SelectClickTypes, SelectTypes } from "@table-library/react-table-library/select";
 import { useParams } from "react-router-dom";
 
-
-// const examData = test_data;
-// const key = "COVID Exam Data";
-
-
 const PatientTable = () => {
 
     const { patientId } = useParams();

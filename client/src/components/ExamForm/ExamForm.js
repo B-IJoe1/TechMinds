@@ -60,13 +60,10 @@ const ExamForm = () => {
         if (response.ok) {
             handleReset();
             console.log("Exam added successfully", json);
-            // dispatch({ type: "ADD_EXAM", payload: json });
+            alert("Exam added successfully!")
         } else {
             setError(json.error);
         }
-
-
-
     }
 
 
@@ -99,10 +96,6 @@ const ExamForm = () => {
         <label>Brixia Score:</label>
         <input type="number" required value={brixiaScore} onChange={(e) => setBrixiaScore(e.target.value)}/>
         <br/>
-
-        <span className="material-symbols-rounded">person_add</span>
-        <span className="material-symbols-rounded">note_add</span>
-        <span className="material-symbols-rounded">post_add</span>
 
         <button type="submit">Add Exam</button>
 
