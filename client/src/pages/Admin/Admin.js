@@ -20,18 +20,6 @@ const Admin = () => {
 
       <div className="buttons">
         <br />
-        {/*<label>
-          Find Exam by: &nbsp;
-          <select>
-            <option>Patient ID</option>
-            <option>Exam ID</option>
-            <option>Patient Age</option>
-            <option>Patient Sex</option>
-            <option>Zip Code</option>
-          </select>
-        </label>
-        <input />
-        <button>Search</button>*/}
         <button onClick={() => handleSubmit()}>Add New Exam</button>
         <br/>
         <br/>
