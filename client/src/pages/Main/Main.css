@@ -1,0 +1,13 @@
+.description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000000;
+    color: #add8e6;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    margin: 0;
+  }
+  

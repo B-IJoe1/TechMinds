@@ -1,44 +1,18 @@
-import React, {useEffect} from "react";
-import TableExam from "../../components/TableExam/TableExam";
-import {useExamContext} from "../../hooks/useExamContext";
+import React from "react";
+import MainTableExam from "../../components/MainTableExam/MainTableExam";
+import Header from "../../components/Header/Header";
+import "./Main.css";
 
 const Main = () => {
-    /*const [exams, setExams] = useState(null);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const response = await fetch("http://localhost:4000/api/index");
-        const json = await response.json();
-
-        if (response.ok) {
-          console.log(json);
-          setExams(json);
-        }
-      };
-      fetchData();
-    }, []);*/
-
-    /*const {exams, dispatch} = useExamContext();
-
-    useEffect(() => {
-        const fetchExams = async () => {
-            const response = await fetch("http://localhost:4000/api/index");
-            const json = await response.json();
-
-            if (response.ok) {
-                dispatch({type: 'SET_EXAMS', payload: json})
-            }
-        }
-
-        fetchExams();
-    }, [])*/
-
-    return (
-        <div>
-            <h2>Main Page</h2>
-            <TableExam/>
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <p className="description">
+        This page is used to view ALL exam records and patient details.
+      </p>
+      <MainTableExam />
+    </div>
+  );
 };
 
 export default Main;
