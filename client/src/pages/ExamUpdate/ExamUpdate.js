@@ -1,39 +1,51 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
+import "../../components/ExamForm/ExamForm.css";
+
 
 const ExamUpdate = () => {
 
-    const [examId, setExamId] = useState("");
-    //const [patientId, setPatientId] = useState("");
-    const [age, setAge] = useState(0);
-    const [bmi, setBmi] = useState(0);
+
+
+    const [examId, setExamId] = useState();
+    const [age, setAge] = useState();
+    const [bmi, setBmi] = useState();
     const [imageURL, setImageURL] = useState("");
     const [keyFindings, setKeyFindings] = useState("");
-    const [brixiaScore, setBrixiaScore] = useState(0);
-    const [zipCode, setZipCode] = useState(0);
-    const [sex, setSex] = useState("");
+    const [brixiaScore, setBrixiaScore] = useState();
+    const [zipCode, setZipCode] = useState();
+    const [sex, setSex] = useState();
     const [error, setError] = useState(null);
     const { patientId } = useParams();
 
     function handleReset() {
         setExamId("");
-        //setPatientId("");
-        setAge(0);
-        setBmi(0);
+        setAge("");
+        setBmi("");
         setImageURL("");
         setKeyFindings("");
-        setBrixiaScore(0);
-        setZipCode(0);
+        setBrixiaScore("");
+        setZipCode("");
         setSex("");
         setError(null);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+
         const exam = {
             examId, patientId, age, bmi, imageURL, keyFindings, brixiaScore, zipCode, sex
 
         };
+
+        /*for (const field in exam) {
+            if (exam[field] === "") {
+                exam[field].__delete__(field);
+            }
+
+        }*/
 
         //fixed this call to api
         const response = await fetch(`http://localhost:4000/api/index/${patientId}`, {
@@ -50,6 +62,7 @@ const ExamUpdate = () => {
         if (response.ok) {
             handleReset();
             console.log("Exam added successfully", json);
+            alert("Exam updated successfully!")
         } else {
             setError(json.error);
         }
@@ -59,13 +72,10 @@ const ExamUpdate = () => {
     }
 
     return (
-        <form className="update" onSubmit={handleSubmit} onReset={handleReset}>
+        <form className="create" onSubmit={handleSubmit} onReset={handleReset}>
             <h2>Update Exam</h2>
             <label>Exam ID:</label>
             <input type="text" value={examId} onChange={(e) => setExamId(e.target.value)} />
-            <br/>
-            <label>Patient ID:</label>
-            {/*<input type="text" value={patientId} onChange={(e) => setPatientId(e.target.value)} />*/}
             <br/>
             <label>Age:</label>
             <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
@@ -88,8 +98,7 @@ const ExamUpdate = () => {
             <label>Brixia Score:</label>
             <input type="number" value={brixiaScore} onChange={(e) => setBrixiaScore(e.target.value)} />
             <br/>
-            <span className="material-symbols-outlined">
-            <button type="submit">Update Exam</button></span>
+            <button type="submit">Update Exam</button>
             {error && <div className="error">{error}</div>}
             <button type="reset">Reset</button>
             <br/>

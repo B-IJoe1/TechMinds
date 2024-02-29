@@ -1,21 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+//pages and components imports
 import Main from "./pages/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
-// import { useApi } from './hooks/use-api';
 import Admin from "./pages/Admin/Admin";
-import Details from "./pages/Details/Details";
 import NewExam from "./pages/NewExam/NewExam";
-
-// comment to change
-import './App.css';
-
-import { useApi } from './hooks/use-api';
 import PatientTable from "./components/PatientTable/PatientTable";
-import ExamUpdate from "./pages/UpdateExam/ExamUpdate";
+import ExamUpdate from "./pages/ExamUpdate/ExamUpdate";
 
 
 function App() {
-  // const { response } = useApi();
 
   return (
     <div className="App">

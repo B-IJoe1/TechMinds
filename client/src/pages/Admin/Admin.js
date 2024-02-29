@@ -17,7 +17,7 @@ const Admin = () => {
 
       <div className="buttons">
         <button className="new_exam" onClick={() => handleSubmit()}>
-          Add New Exam
+          Add Exam
         </button>
       </div>
 
