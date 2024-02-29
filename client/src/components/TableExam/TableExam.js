@@ -1,8 +1,10 @@
 import * as React from "react";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 //table-library imports
-import {useTheme} from "@table-library/react-table-library/theme";
-import {CompactTable} from "@table-library/react-table-library/compact";
+import { useTheme } from "@table-library/react-table-library/theme";
+import { CompactTable } from "@table-library/react-table-library/compact";
+import './TableExam.css';
+
 
 function handleSubmit() {
     window.location.href = "/newExam";
@@ -27,7 +29,7 @@ const TableExam = () => {
     console.log(exams);
 
 
-    const data = {nodes: exams};
+    const data = { nodes: exams };
     const theme = useTheme({
         HeaderRow: `
         background-color: #eaf5fd;
@@ -73,22 +75,22 @@ const TableExam = () => {
     }
 
     const COLUMNS = [
-        {label: "Exam ID", renderCell: (item) => item.examId},
-        {label: "Patient ID", renderCell: (item) => item.patientId},
-        {label: "Age", renderCell: (item) => item.age},
-        {label: "Sex", renderCell: (item) => item.sex},
-        {label: "BMI", renderCell: (item) => item.bmi},
-        {label: "Zip Code", renderCell: (item) => item.zipCode},
+        { label: "Exam ID", renderCell: (item) => item.examId },
+        { label: "Patient ID", renderCell: (item) => item.patientId },
+        { label: "Age", renderCell: (item) => item.age },
+        { label: "Sex", renderCell: (item) => item.sex },
+        { label: "BMI", renderCell: (item) => item.bmi },
+        { label: "Zip Code", renderCell: (item) => item.zipCode },
         {
             label: "Image",
             renderCell: (item) => (
-                <img src={item.imageURL} width={100} height={60} alt="lung xray"/>
+                <img src={item.imageURL} width={100} height={60} alt="lung xray" />
             ),
         },
         {
             label: "Patient Details",
             renderCell: (item) => (
-                <a href={`/Details/${item.patientId}`}>View Patient</a>
+                <a href={`/Details/${item.patientId}`} className="link">View Patient</a>
             ),
         },
         {

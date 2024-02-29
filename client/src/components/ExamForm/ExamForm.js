@@ -1,4 +1,5 @@
-import {useState} from "react";
+import { useState } from "react";
+import './ExamForm.css';
 
 
 const ExamForm = () => {
@@ -30,15 +31,27 @@ const ExamForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const exam = {
-            examId, patientId, age, bmi, imageURL, keyFindings, brixiaScore, zipCode, sex
+
+            examId,
+            patientId,
+            age,
+            bmi,
+            imageURL,
+            keyFindings,
+            brixiaScore,
+            zipCode,
+            sex
 
         };
 
 
         const response = await fetch("http://localhost:4000/api/index/admin", {
-            method: "POST", headers: {
+
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
-            }, body: JSON.stringify(exam),
+            },
+            body: JSON.stringify(exam),
         });
 
         const json = await response.json();
@@ -51,6 +64,7 @@ const ExamForm = () => {
         } else {
             setError(json.error);
         }
+
 
 
     }
@@ -99,6 +113,7 @@ const ExamForm = () => {
         <br/>
         <a href="/admin">Back to Admin Page</a>
     </form>)
+
 }
 
 export default ExamForm;
