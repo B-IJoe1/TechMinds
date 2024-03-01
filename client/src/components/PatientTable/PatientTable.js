@@ -6,13 +6,26 @@ import { useSort, HeaderCellSort } from "@table-library/react-table-library/sort
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useRowSelect, HeaderCellSelect, CellSelect, SelectClickTypes, SelectTypes } from "@table-library/react-table-library/select";
 import { useParams } from "react-router-dom";
+import {useCallback, useEffect, useState} from "react";
 
 const PatientTable = () => {
 
     const { patientId } = useParams();
+    const [exams, setExams] = useState([]);
 
+    const fetchData = useCallback(async () => {
+        const response = await fetch("http://localhost:4000/api/index");
+        return await response.json();
+    }, []);
 
-    const patientCases = test_data.filter(item => item.patientId === patientId);
+    useEffect(() => {
+        fetchData().then((apiData) => {
+            setExams(apiData);
+            //   dispatch({ type: "SET_EXAMS", payload: apiData });
+        });
+    }, [fetchData]);
+
+    const patientCases = exams.filter(item => item.patientId === patientId);
 
     const data = { nodes: patientCases }
 
