@@ -27,7 +27,7 @@ npm start
 ```
 
 You should then be able to visit `localhost:9000` in your browser and see the server running.
----
+
 
 # Doctor's Notes App — Full Stack Exam Management System
 
